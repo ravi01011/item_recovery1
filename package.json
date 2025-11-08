@@ -1,0 +1,15 @@
+{
+  "name": "lost-and-found-system",
+  "version": "1.0.0",
+  "description": "Lost and Found System - A platform to report and find lost items",
+  "scripts": {
+    "install-frontend": "cd frontend && npm install",
+    "install-backend": "cd backend && npm install",
+    "install-all": "npm run install-frontend && npm run install-backend",
+    "dev": "cd backend && npm start & cd frontend && PORT=5000 BROWSER=none npm start",
+    "start": "cd frontend && PORT=5000 BROWSER=none npm start"
+  },
+  "keywords": ["lost-and-found", "react", "express", "mongodb"],
+  "author": "",
+  "license": "ISC"
+}

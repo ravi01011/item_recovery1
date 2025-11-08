@@ -4,25 +4,28 @@ const app = express()
 // const morgan =require('morgan')
 require("dotenv").config({path: '../.env'});
 const cors =require('cors')
-// const port = 5000
-const port = process.env.PORT || 5000;
+// Backend runs on port 3001, frontend on 5000
+const port = process.env.BACKEND_PORT || 3001;
 const cookie_parser=require("cookie-parser")
 const mongoose =require('mongoose')
 const routes = require('./routes/auth')
 const category = require('./routes/category')
 const passport = require('passport');
 var path = require('path');
-app.use(cors())
-// const session = require('express-session');
-// const cookieSession = require('cookie-session')
-// require('./config/passport')(passport)
-
-// app.use('/public',express.static('./uploads'))
+// Enable trust proxy for Replit environment
 app.enable("trust proxy")
-// app.use(fileUpload())
-// app.use(cors())//avoid inter port communication error
+
+// Configure CORS for Replit - allow frontend and Replit preview
 app.use(cors({
-    origin:"https://lfs-project.herokuapp.com",
+    origin: function(origin, callback) {
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+        // Allow all Replit domains and localhost for development
+        if (origin.includes('replit.') || origin.includes('localhost') || origin.includes('127.0.0.1')) {
+            return callback(null, true);
+        }
+        return callback(null, true); // Allow all origins for now
+    },
     credentials: true
 }));
 app.use(express.static(path.join(__dirname, 'uploads')));
