@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { API_BASE_URL, S3_BASE_URL } from "../config";
 import Navbar from "./Navbar";
 import "../css/myresponses.css";
 import Axios from "axios";
@@ -14,7 +15,7 @@ function Response() {
   const handleShowNumber = (response) => {
     // console.log("Inside :", response);
     Axios({
-      url: `https://lfs-backend.herokuapp.com/getnumber/${response.belongsTo}`,
+      url: `${API_BASE_URL}/getnumber/${response.belongsTo}`,
       method: "GET",
     })
       .then((response) => {
@@ -31,7 +32,7 @@ function Response() {
   const temp = [];
   useEffect(() => {
     Axios({
-      url: `https://lfs-backend.herokuapp.com/myresponses/${
+      url: `${API_BASE_URL}/myresponses/${
         JSON.parse(localStorage.getItem("user"))._id
       }`,
       method: "GET",

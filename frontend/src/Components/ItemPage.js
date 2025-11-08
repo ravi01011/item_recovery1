@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { API_BASE_URL, S3_BASE_URL } from "../config";
 // import "../css/itempage.css";
 import "../css/itempage.css";
 import sant from "../img/Santorini.jpg";
@@ -65,7 +66,7 @@ function ItemPage(props) {
     // console.log("dd")
     Axios({
       method: "POST",
-      url: `http://localhost:5000/activateItem/${item_id}`,
+      url: `${API_BASE_URL}/activateItem/${item_id}`,
     })
       .then((res) => {
         console.log("Activated");
@@ -112,7 +113,7 @@ function ItemPage(props) {
   useEffect(() => {
     const { location } = props;
     Axios({
-      url: `https://lfs-backend.herokuapp.com/item/${
+      url: `${API_BASE_URL}/item/${
         item_id
       }`,
       method: "GET",
@@ -340,7 +341,7 @@ function ItemPage(props) {
   const submitResponse = () => {
     // console.log(e.target.value)
     Axios({
-      url: `https://lfs-backend.herokuapp.com/confirmResponse/${messageId}`,
+      url: `${API_BASE_URL}/confirmResponse/${messageId}`,
       method: "POST",
       data: { response: response },
     })
@@ -361,7 +362,7 @@ function ItemPage(props) {
   const delete_item = () => {
     console.log("deleted");
     Axios({
-      url: "https://lfs-backend.herokuapp.com/deleteitem",
+      url: "`${API_BASE_URL}`/deleteitem",
       method: "POST",
       data: { item_id },
     })
@@ -400,7 +401,7 @@ function ItemPage(props) {
       });
     }
     Axios({
-      url: "https://lfs-backend.herokuapp.com/edititem",
+      url: "`${API_BASE_URL}`/edititem",
       method: "POST",
       data: info,
     })
@@ -442,7 +443,7 @@ function ItemPage(props) {
   };
   const submitAnswer = () => {
     Axios({
-      url: "https://lfs-backend.herokuapp.com/submitAnswer",
+      url: "`${API_BASE_URL}`/submitAnswer",
       method: "POST",
       data: {
         itemId: item_id,
@@ -493,7 +494,7 @@ function ItemPage(props) {
               return (
                 <div style={{ border: "2px solid black" }}>
                   <img
-                    src={`https://lost-and-found-system.s3.amazonaws.com/${i.img}`}
+                    src={`${S3_BASE_URL}/${i.img}`}
                     alt="item"
                   />
                 </div>

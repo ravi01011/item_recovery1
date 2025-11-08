@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
 import { Button, Modal, Form } from "react-bootstrap";
+import { API_BASE_URL } from "../config";
 
 function Found_item() {
   const [itemname, setitemname] = useState("");
@@ -23,7 +24,7 @@ function Found_item() {
     };
     // console.log(payload);
     axios({
-      url: "http://localhost:5000/founditem",
+      url: `${API_BASE_URL}/founditem`,
       method: "POST",
       data: payload,
       headers: {
@@ -31,7 +32,6 @@ function Found_item() {
       },
       withCredentials: true,
       credentials: "include",
-      // url: "http://localhost:5000/login"
     })
       .then((response) => {
         // console.log(response)

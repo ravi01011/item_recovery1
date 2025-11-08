@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "../css/newSignup.css";
 import axios from "axios";
 import Navbar from "../Components/Navbar";
+import { API_BASE_URL } from "../config";
 
 export default class Signup extends Component {
   constructor() {
@@ -43,7 +44,7 @@ export default class Signup extends Component {
     };
     // console.log(payload.username)
     axios({
-      url: "https://lfs-backend.herokuapp.com/signup",
+      url: `${API_BASE_URL}/signup`,
       method: "POST",
       data: payload,
     })

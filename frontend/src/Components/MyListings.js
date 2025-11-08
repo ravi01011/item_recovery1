@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { API_BASE_URL, S3_BASE_URL } from "../config";
 import { setConstraint } from "../constraints";
 import Navbar from "../Components/Navbar";
 import "../css/item_card.css";
@@ -63,7 +64,7 @@ export default function Feed() {
   useEffect(() => {
     // console.log("Test");
     Axios({
-      url: `https://lfs-backend.herokuapp.com/mylistings/${JSON.parse(localStorage.getItem("user"))._id}`,
+      url: `${API_BASE_URL}/mylistings/${JSON.parse(localStorage.getItem("user"))._id}`,
       method: "GET",
     })
       .then((response) => {
@@ -110,7 +111,7 @@ export default function Feed() {
                 <Card bsPrefix="item-card" style={{ maxHeight: "465px" }}>
                   <Card.Img
                     variant="top"
-                    src={`https://lost-and-found-system.s3.amazonaws.com/${item.itemPictures[0].img}`}
+                    src={`${S3_BASE_URL}/${item.itemPictures[0].img}`}
                   />
                   <Card.Body bsPrefix="card-body">
                     {item.status ? (

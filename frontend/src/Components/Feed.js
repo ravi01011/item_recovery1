@@ -6,6 +6,7 @@ import "../css/feed.css";
 import "../css/item_card.css";
 import Axios from "axios";
 import { Card, Col, Container, Row } from "react-bootstrap";
+import { API_BASE_URL, S3_BASE_URL } from "../config";
 
 export default function Feed() {
   // console.log("Status :", LOGGED_IN)
@@ -64,7 +65,7 @@ export default function Feed() {
   useEffect(() => {
     // console.log("Test");
     Axios({
-      url: "https://lfs-backend.herokuapp.com/getitem",
+      url: `${API_BASE_URL}/getitem`,
       method: "GET",
     })
       .then((response) => {
@@ -112,7 +113,7 @@ export default function Feed() {
                   <Card bsPrefix="item-card">
                     <Card.Img
                       variant="top"
-                      src={`https://lost-and-found-system.s3.amazonaws.com/${item.itemPictures[0].img}`}
+                      src={`${S3_BASE_URL}/${item.itemPictures[0].img}`}
                     />
                     <Card.Body bsPrefix="card-body">
                       <Card.Title
@@ -179,7 +180,7 @@ export default function Feed() {
                   <Card bsPrefix="item-card" key={item.name}>
                     <Card.Img
                       variant="top"
-                      src={`https://lost-and-found-system.s3.amazonaws.com/${item.itemPictures[0].img}`}
+                      src={`${S3_BASE_URL}/${item.itemPictures[0].img}`}
                     />
                     <Card.Body bsPrefix="card-body">
                       <Card.Title

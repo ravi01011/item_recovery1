@@ -4,6 +4,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import { Spinner } from "react-bootstrap";
+import { API_BASE_URL } from "../config";
 // import developer from "../img/developer_outline I.svg";
 
 // export default let [user,setUser]=useState(false)
@@ -21,11 +22,9 @@ function Login() {
       password: document.getElementById("password").value,
     };
     axios({
-      url: "https://lfs-backend.herokuapp.com/login",
+      url: `${API_BASE_URL}/login`,
       method: "POST",
       data: payload,
-
-      // url: "http://localhost:5000/login"
     })
       .then((response) => {
         console.log("Response is :", response);

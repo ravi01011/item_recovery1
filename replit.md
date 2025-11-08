@@ -25,9 +25,13 @@ The backend requires the following environment variables:
 - **2025-11-08**: Initial import and Replit setup
   - Restructured project from nested directories to clean frontend/backend structure
   - Configured backend to run on port 3001
-  - Configured frontend to run on port 5000
-  - Updated CORS settings for Replit environment
-  - Prepared environment variable configuration for MongoDB
+  - Configured frontend to run on port 5000 with OpenSSL legacy provider for Node 20 compatibility
+  - Updated CORS settings for Replit environment with flexible origin detection
+  - Configured MongoDB connection with environment variables
+  - Created frontend/src/config.js for centralized API and S3 configuration
+  - Updated all frontend components to use centralized config instead of hardcoded URLs
+  - Configured deployment for VM target to maintain stateful connections
+  - Application successfully running with frontend at port 5000 and backend at port 3001
 
 ## Architecture
 - Frontend makes API calls to backend

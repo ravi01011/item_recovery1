@@ -4,6 +4,7 @@ import lodash from "lodash";
 import "bootstrap/dist/css/bootstrap.css";
 import { useToasts } from "react-toast-notifications";
 import { Button, Modal, Form, Spinner } from "react-bootstrap";
+import { API_BASE_URL } from "../config";
 function LostItem() {
   const [show, setShow] = useState(false);
   const { addToast } = useToasts();
@@ -42,7 +43,7 @@ function LostItem() {
       });
 
       axios({
-        url: "https://lfs-backend.herokuapp.com/postitem",
+        url: `${API_BASE_URL}/postitem`,
         method: "POST",
         data: info,
         headers: {
@@ -55,7 +56,6 @@ function LostItem() {
               "%"
           );
         },
-        // url: "http://localhost:5000/login"
       })
         .then((response) => {
           console.log(response);

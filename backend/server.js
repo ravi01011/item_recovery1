@@ -69,15 +69,23 @@ app.use(passport.session())
 //     useCreateIndex:true
 // })
 
-mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASSWORD}@cluster0.6kk18.mongodb.net/${process.env.MONGO_DB_DATABASE}?retryWrites=true&w=majority`,{
+// Use MONGODB_URI if provided, otherwise construct from parts
+const mongoUri = process.env.MONGODB_URI || `mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASSWORD}@cluster0.6kk18.mongodb.net/${process.env.MONGO_DB_DATABASE}?retryWrites=true&w=majority`;
+
+mongoose.connect(mongoUri,{
     useNewUrlParser: true,
     useUnifiedTopology:true,
     useFindAndModify:false,
     useCreateIndex:true
 })
+.catch((err) => {
+    console.log('Database connection error:', err.message);
+    console.log('Make sure your MongoDB connection string is correct.');
+    console.log('You may need to update the cluster address in the connection string or provide MONGODB_URI environment variable.');
+});
 
 mongoose.connection.on('connected',()=>{
-    console.log('Database connected !')
+    console.log('Database connected successfully!')
 })
 
 app.use('/',routes)

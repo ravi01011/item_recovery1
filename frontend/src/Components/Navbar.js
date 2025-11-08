@@ -1,4 +1,5 @@
 import React from "react";
+import { API_BASE_URL, S3_BASE_URL } from "../config";
 import { setConstraint } from "../constraints";
 import "../css/Navbar.css";
 import axios from "axios";
@@ -32,7 +33,7 @@ function Navbar() {
 
     console.log("Signed out !");
     axios({
-      url: "https://lfs-backend.herokuapp.com/signout",
+      url: "`${API_BASE_URL}`/signout",
       method: "POST",
       headers: {
         Authorization: token ? `Bearer ${token}` : "",

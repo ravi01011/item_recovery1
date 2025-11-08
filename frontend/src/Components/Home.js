@@ -4,6 +4,7 @@ import "../css/landing.css";
 import Axios from "axios";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { API_BASE_URL } from "../config";
 // import image from "../img/undraw_lost_bqr2.svg";
 // import {annotate} from "rough-notation"
 import image from "../img/lost-2.svg";
@@ -67,7 +68,7 @@ export default function Home() {
     };
     Axios({
       method: "POST",
-      url: "https://lfs-backend.herokuapp.com/sendmessage",
+      url: `${API_BASE_URL}/sendmessage`,
       data: data,
     })
       .then((res) => {
